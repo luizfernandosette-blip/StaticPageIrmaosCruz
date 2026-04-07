@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irmãos Cruz Auto Peças - Mais de 30 Anos de Tradição</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #ff6b00;
+            --secondary-color: #1a1a2e;
+            --accent-color: #ffd700;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --gradient-1: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+            --gradient-2: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header Hero Section */
+        .hero {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), url('img/fachada_loja.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            cursor: grab;
+            touch-action: pan-y;
+        }
+
+        .hero.is-dragging {
+            cursor: grabbing;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.45) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero .highlight {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .cta-buttons {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: var(--text-light);
+            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 107, 0, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        nav.scrolled {
+            transform: translateY(0);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-1);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+        }
+
+        /* Ancora Section */
+        .ancora-section {
+            background: var(--gradient-2);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .ancora-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .ancora-badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+        }
+
+        .ancora-badge img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+        }
+
+        .ancora-badge h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .ancora-badge p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.3);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-card-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .product-card h3 {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Store Showcase */
+        .store-showcase {
+            background: linear-gradient(135deg, #fff7f1 0%, #ffffff 55%, #fff2e6 100%);
+        }
+
+        .store-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .store-photo {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+        }
+
+        .store-photo img {
+            width: 100%;
+            height: 100%;
+            max-height: 520px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .store-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0));
+            pointer-events: none;
+        }
+
+        .store-copy h3 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .store-copy p {
+            color: #555;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .smart-lines {
+            list-style: none;
+            display: grid;
+            gap: 14px;
+        }
+
+        .smart-lines li {
+            background: #fff;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 14px 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            font-weight: 600;
+            color: #2f2f2f;
+        }
+
+        /* Services Section */
+        .services-section {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        /* About Section */
+        .about-section {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 30px;
+            background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .about-feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--gradient-2);
+            color: var(--text-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-card a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-color);
+        }
+
+        .map-container {
+            margin-top: 60px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f0f1e;
+            color: var(--text-light);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                background-position: left center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .hero .highlight {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .store-layout {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .store-copy h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-button {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 2px 2px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        @media screen and (max-width: 768px) {
+            .whatsapp-button {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#ancora">Ancora</a></li>
+            <li><a href="#loja">Loja</a></li>
+            <li><a href="#produtos">Produtos</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Irmãos Cruz Auto Peças</h1>
+            <p class="tagline">Sua Parceira de Confiança há Mais de 30 Anos</p>
+            <p class="highlight">✓ Sede Própria &nbsp;|&nbsp; ✓ Melhor Preço &nbsp;|&nbsp; ✓ Qualidade Garantida</p>
+            <p style="font-size: 1.2rem; margin: 20px 0;">
+                Todo o catálogo de produtos para seu veículo em um só lugar!
+            </p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-phone-alt"> (31) 3679-2800</i>
+                </a>
+                <a href="#produtos" class="btn btn-secondary">
+                    <i class="fas fa-car"></i> Conheça Nossos Produtos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ancora Section -->
+    <section id="ancora" class="ancora-section">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--text-light);">Parceria de Excelência</h2>
+            <div class="ancora-content">
+                <div class="ancora-badge fade-in">
+                    <img src="img/parceiro_rede_ancora.png" alt="Rede Ancora">
+                    <h3>Somos Franqueados da Rede Ancora</h3>
+                    <p>A maior distribuidora de peças automotivas do Brasil!</p>
+                    <p style="margin-top: 20px; font-size: 1.3rem; font-weight: 600;">
+                        O que nos garante o melhor preço e qualidade para você, nosso cliente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Section -->
+    <section id="loja" class="store-showcase">
+        <div class="container">
+            <h2 class="section-title">Nossa Loja</h2>
+            <p class="section-subtitle">Estrutura completa, atendimento de confiança e solução rápida para o seu veículo</p>
+            <div class="store-layout">
+                <div class="store-photo fade-in">
+                    <img src="img/loja.jpg" alt="Foto da loja Irmãos Cruz Auto Peças">
+                </div>
+                <div class="store-copy fade-in">
+                    <h3>Mais que peças: orientação certa para cada necessidade</h3>
+                    <p>
+                        Cada detalhe da nossa loja foi pensado para facilitar sua compra e garantir que você saia com a peça ideal,
+                        no melhor custo-benefício.
+                    </p>
+                    <ul class="smart-lines">
+                        <li>Precisou hoje? A gente acelera seu atendimento para você não perder tempo.</li>
+                        <li>Preço justo com procedência: economia que protege seu carro e seu bolso.</li>
+                        <li>Equipe experiente para indicar a peça certa na primeira compra.</li>
+                        <li>Quem entende de autopeças sabe: confiança também é item de segurança.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="produtos">
+        <div class="container">
+            <h2 class="section-title">Nossos Produtos</h2>
+            <p class="section-subtitle">Tudo o que seu veículo precisa, com a qualidade que você merece</p>
+            <div class="products-grid">
+                <div class="product-card fade-in">
+                    <img src="img/amortecedores.png" alt="Amortecedores">
+                    <div class="product-card-content">
+                        <h3>Amortecedores</h3>
+                        <p>Conforto e segurança para sua direção</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <img src="img/baterias.png" alt="Baterias">
+                    <div class="product-card-content">
+                        <h3>Baterias</h3>
+                        <p>Energia confiável para dar a partida</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <img src="img/discofreio.png" alt="Disco de Freio">
+                    <div class="product-card-content">
+                        <h3>Discos e Pastilhas</h3>
+                        <p>Frenagem eficiente e segura</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <img src="img/escapamento.png" alt="Escapamento">
+                    <div class="product-card-content">
+                        <h3>Escapamentos</h3>
+                        <p>Performance e durabilidade</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <img src="img/oleos_aditivos.png" alt="Óleos e Aditivos">
+                    <div class="product-card-content">
+                        <h3>Óleos e Aditivos</h3>
+                        <p>Proteção total para seu motor</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <img src="img/pneu.png" alt="Pneus">
+                    <div class="product-card-content">
+                        <h3>Pneus</h3>
+                        <p>Aderência e segurança em todos os terrenos</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <img src="img/suspensao.png" alt="Suspensão">
+                    <div class="product-card-content">
+                        <h3>Suspensão</h3>
+                        <p>Estabilidade e controle total</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <img src="img/velas.png" alt="Velas">
+                    <div class="product-card-content">
+                        <h3>Velas de Ignição</h3>
+                        <p>Partida rápida e economia de combustível</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="services-section">
+        <div class="container">
+            <h2 class="section-title">Serviços Especializados</h2>
+            <p class="section-subtitle">Realizamos serviços automotivos com qualidade e agilidade</p>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-oil-can"></i></div>
+                    <h3>Troca de Óleo</h3>
+                    <p>Troca completa com óleo de qualidade premium e filtros originais</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-wind"></i></div>
+                    <h3>Sistema de Escapamento</h3>
+                    <p>Instalação e manutenção de escapamentos com garantia</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-car-battery"></i></div>
+                    <h3>Bateria e Elétrica</h3>
+                    <p>Teste, instalação e manutenção do sistema elétrico</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="about-section">
+        <div class="container">
+            <h2 class="section-title">Por Que Escolher a Irmãos Cruz?</h2>
+            <p class="section-subtitle">Tradição, qualidade e compromisso com você</p>
+            <div class="about-content">
+                <div class="about-feature fade-in">
+                    <div class="about-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div>
+                        <h3>Mais de 30 Anos</h3>
+                        <p>Três décadas de experiência e tradição no mercado automotivo, sempre inovando e crescendo.</p>
+                    </div>
+                </div>
+                <div class="about-feature fade-in">
+                    <div class="about-icon"><i class="fas fa-building"></i></div>
+                    <div>
+                        <h3>Sede Própria</h3>
+                        <p>Estrutura completa e moderna para melhor atender você, com estoque sempre abastecido.</p>
+                    </div>
+                </div>
+                <div class="about-feature fade-in">
+                    <div class="about-icon"><i class="fas fa-boxes"></i></div>
+                    <div>
+                        <h3>Catálogo Completo</h3>
+                        <p>Todo o catálogo de produtos para seu veículo. Se não tiver, conseguimos rapidamente!</p>
+                    </div>
+                </div>
+                <div class="about-feature fade-in">
+                    <div class="about-icon"><i class="fas fa-award"></i></div>
+                    <div>
+                        <h3>Qualidade Garantida</h3>
+                        <p>Peças originais e de primeira linha da Rede Ancora, com garantia e procedência.</p>
+                    </div>
+                </div>
+                <div class="about-feature fade-in">
+                    <div class="about-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                    <div>
+                        <h3>Melhor Preço</h3>
+                        <p>Preços competitivos sem abrir mão da qualidade. Compare e comprove!</p>
+                    </div>
+                </div>
+                <div class="about-feature fade-in">
+                    <div class="about-icon"><i class="fas fa-users"></i></div>
+                    <div>
+                        <h3>Atendimento Personalizado</h3>
+                        <p>Equipe experiente pronta para encontrar a solução perfeita para seu veículo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="contact-section">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--text-light);">Entre em Contato</h2>
+            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">Estamos prontos para atender você!</p>
+            <div class="contact-grid">
+                <div class="contact-card fade-in">
+                    <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                    <h3>Telefone e WhatsApp</h3>
+                    <p><a href="https://wa.me/553136792800" target="_blank">(31) 3679-2800</a></p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Clique para falar conosco agora!</p>
+                </div>
+                <div class="contact-card fade-in">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Endereço</h3>
+                    <p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Avenida+Prefeito+Vitor+Fantini+27+Centro+Sabara+MG" target="_blank">
+                            Avenida Prefeito Vítor Fantini, 27<br>
+                            Centro, Sabará - MG<br>
+                            CEP: 34505-360
+                        </a>
+                    </p>
+                </div>
+                <div class="contact-card fade-in">
+                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Horário de Funcionamento</h3>
+                    <p>
+                        <strong>Segunda a Sexta:</strong><br>
+                        8:00 às 18:00<br><br>
+                        <strong>Sábados:</strong><br>
+                        8:00 às 12:00
+                    </p>
+                </div>
+            </div>
+            <div class="map-container fade-in">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.8404445285676!2d-43.80719!3d-19.88562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa699f2e6f1f6f1%3A0x0!2sAvenida%20Prefeito%20V%C3%ADtor%20Fantini%2C%2027%20-%20Centro%2C%20Sabar%C3%A1%20-%20MG%2C%2034505-360!5e0!3m2!1spt-BR!2sbr!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>Irmãos Cruz Auto Peças</h3>
+            <p>Mais de 30 anos levando qualidade e confiança até você</p>
+            <div class="social-links">
+                <a href="https://wa.me/553136792800" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Avenida+Prefeito+Vitor+Fantini+27+Centro+Sabara+MG" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
+                &copy; 2026 Irmãos Cruz Auto Peças. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/553136792800" class="whatsapp-button" target="_blank" rel="noopener noreferrer" aria-label="Contato WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeElements.forEach(element => {
+            fadeObserver.observe(element);
+        });
+
+        // Hero background drag-to-pan
+        const hero = document.querySelector('.hero');
+
+        if (hero) {
+            let isDragging = false;
+            let isPanningX = false;
+            let startX = 0;
+            let startY = 0;
+            let startPosX = 50;
+            let startPosY = 50;
+
+            const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+            const parsePositionValue = (value) => {
+                const normalized = value.trim().toLowerCase();
+
+                if (normalized === 'left' || normalized === 'top') {
+                    return 0;
+                }
+                if (normalized === 'center') {
+                    return 50;
+                }
+                if (normalized === 'right' || normalized === 'bottom') {
+                    return 100;
+                }
+                if (normalized.endsWith('%')) {
+                    return parseFloat(normalized);
+                }
+
+                return 50;
+            };
+
+            const getCurrentBackgroundPosition = () => {
+                const computed = window.getComputedStyle(hero).backgroundPosition;
+                const firstLayer = computed.split(',')[0].trim();
+                const parts = firstLayer.split(' ');
+                const x = parsePositionValue(parts[0] || '50%');
+                const y = parsePositionValue(parts[1] || '50%');
+
+                return { x, y };
+            };
+
+            const startDrag = (event) => {
+                if (event.button !== undefined && event.button !== 0) {
+                    return;
+                }
+
+                if (event.target.closest('a, button, input, textarea, select')) {
+                    return;
+                }
+
+                isDragging = true;
+                isPanningX = false;
+
+                const currentPos = getCurrentBackgroundPosition();
+                startPosX = currentPos.x;
+                startPosY = currentPos.y;
+                startX = event.clientX;
+                startY = event.clientY;
+            };
+
+            const moveDrag = (event) => {
+                if (!isDragging) {
+                    return;
+                }
+
+                event.preventDefault();
+
+                const deltaX = event.clientX - startX;
+                const deltaY = event.clientY - startY;
+
+                if (!isPanningX) {
+                    if (Math.abs(deltaX) < 6 && Math.abs(deltaY) < 6) {
+                        return;
+                    }
+
+                    if (Math.abs(deltaX) >= Math.abs(deltaY)) {
+                        isPanningX = true;
+                        hero.classList.add('is-dragging');
+                        hero.setPointerCapture(event.pointerId);
+                    } else {
+                        isDragging = false;
+                        return;
+                    }
+                }
+
+                event.preventDefault();
+
+                const deltaXPercent = (deltaX / hero.clientWidth) * 100;
+                const nextX = clamp(startPosX + deltaXPercent, 0, 100);
+
+                hero.style.backgroundPosition = `${nextX}% ${startPosY}%`;
+            };
+
+            const endDrag = () => {
+                if (!isDragging) {
+                    return;
+                }
+
+                isDragging = false;
+                isPanningX = false;
+                hero.classList.remove('is-dragging');
+            };
+
+            hero.addEventListener('pointerdown', startDrag);
+            hero.addEventListener('pointermove', moveDrag);
+            hero.addEventListener('pointerup', endDrag);
+            hero.addEventListener('pointercancel', endDrag);
+        }
+    </script>
+</body>
+</html>
