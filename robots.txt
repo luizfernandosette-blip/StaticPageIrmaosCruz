@@ -1,0 +1,9 @@
+# robots.txt — Irmãos Cruz Auto Peças
+# ATENÇÃO: substitua o domínio abaixo pelo domínio real antes de publicar.
+
+User-agent: *
+Allow: /
+Disallow: /cgi-bin/
+
+# Sitemap
+Sitemap: https://www.irmaoscruzautopecas.com.br/sitemap.xml
