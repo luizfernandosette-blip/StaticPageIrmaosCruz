@@ -1,0 +1,12 @@
+Crie um site estilo onepage para uma auto-peças. Estilize usando técnicas modernas de css para uma aparência sofisticada.
+Pode usar as imagens que constam na pasta imgs. Crie dizeres inteligentes e chamativos, destaque que a Empresa possui mais de 30 anos de mercado, sede própria e todo catalogo de produtos para seu veículo.
+
+Realizamos alguns serviços automotivos como troca de óleo, escapamento etc. Não deixe de nos consultar!
+Destaque também "Somos franqueados da rede Ancora, a maior distribuidora de peças automotivas do Brasil!" e vincule a imagem parceiro_rede_ancora
+"O que nos garante o melhor preço e qualidade para você, nosso cliente". 
+Use a fachada_loja como fundo de um banner no header, com efeito como transparencia e fundo escuro
+
+(31)3679-2800 com link para whatsapp
+Link Google maps com o endereço Avenida Prefeito Vítor Fantini, 27 Centro, Sabará - MG 34505-360
+
+Horario de funcionamento de Seg a Sex de 8 às 18h e Sabados de 8 à 12h
